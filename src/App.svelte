@@ -1,20 +1,25 @@
 <script>
-  import Directory from './components/Directory.svelte';
+  import { Router, Link, Route } from 'svelte-routing';
+  import Home from './pages/Home.svelte';
+  import About from './pages/About.svelte';
+
+  export let url = '';
 </script>
 
-<main>
-  <Directory />
-</main>
+<Router {url}>
+  <nav>
+    <Link to="/">Home</Link>
+    <Link to="about">About</Link>
+  </nav>
+  <div>
+    <Route path="about" component={About} />
+    <Route path="/"><Home /></Route>
+  </div>
+</Router>
 
 <style>
   :root {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-
-  main {
-    text-align: center;
-    padding: 1em;
-    margin: 0 auto;
   }
 </style>
